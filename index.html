@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up for Norse mythology</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="cardContainer">
+        <div class="section left">
+            <img src="img/tree.png" alt="norse genealogy">
+            <div class="logo"></div>
+        </div>
+        <div class="section right">
+            <h1>Welcome to Asgard!</h1>
+            <p>Want to know more about <strong>Norse Mythology</strong>? You will find here: </p>
+            <ul>
+                <li>How mighty <strong>Thor</strong> gained his famous <em>Mjolnir?</em></li>
+                <li>In what circumstances <strong>Loki</strong> gave birth to horse called <em>Sleipnir?</em></li>
+                <li>Why word "Wendesday" comes directly from <strong>Odin?</strong></li>
+            </ul>
+            <p>Sign up to find out more!</p>
+            <div class="formContainer">
+                <form action="http://httpbin.org/get" method="get">
+                    <fieldset>
+                        <legend>Let's do this!</legend>
+                        <div class="leftForm">
+                            <div class="formInput">
+                                <label for="firstname">FIRST NAME<span title="This field is required" aria-label="required">*</span></label>
+                                <input type="text" name="user-firstname" id="firstname" required>
+                            </div>
+                            <div class="formInput">
+                                <label for="email">EMAIL<span title="This field is required" aria-label="required">*</span></label>
+                                <input type="email" name="user-email" id="email" required>
+                            </div>
+                            <div class="formInput">
+                                <label for="password">PASSWORD<span title="This field is required" aria-label="required">*</span></label>
+                                <input type="password" name="user-password" id="password" required>
+                            </div>
+                        </div>
+                        <div class="rightForm">
+                            <div class="formInput">
+                                <label for="lastname">SECOND NAME<span title="This field is required" aria-label="required">*</span></label>
+                                <input type="text" name="user-lastname" id="lastname" required>
+                            </div>
+                            <div class="formInput">
+                                <label for="phone">PHONE NUMBER</label>
+                                <input type="tel" name="user-phone" id="phone">
+                            </div>
+                            <div class="formInput">
+                                <label for="confirmPassword">CONFIRM PASSWORD<span title="This field is required" aria-label="required">*</span></label>
+                                <input type="password" name="user-password-confirm" id="confirmPassword" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="passwordRestrictionMessage"></div>
+                    <div class="formInput checkbox"><input type="checkbox" name="newsletter" id="newsletter"><label for="newsletter">Hit me up with a Norse Mythology newsletter!</label></div>
+                    <button type="submit">Create account</button>
+
+
+                </form>
+                <div class="loginMess">Already have an account? <a href="https://github.com/patsok">Log in</a></div>
+                <div class="rememberPassword">Forgot your password? <a href="https://github.com/patsok">Reset</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="author">Made with <img src="./img/heart.png" width="15rem"> by <a href="https://github.com/patsok" target="_blank">Falco</a></div>
+    </div>
+</body>
+
+</html>

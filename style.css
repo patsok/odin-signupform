@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Roboto&display=swap');
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #0c2022;
+    --secondary-color: #69B7BF;
+    --background-color: #0D0D0D;
+    --width: 70rem;
+    --border-radius: .5rem;
+}
+
+body {
+    background-color: var(--background-color);
+    color: white;
+    font-family: 'Kdam Thmor Pro', 'Roboto', sans-serif;
+    font-size: .8rem;
+    letter-spacing: 0.1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+}
+
+.cardContainer {
+    border: var(--secondary-color) solid 3px;
+    border-radius: var(--border-radius);
+    flex-shrink: 1;
+    width: var(--width);
+    height: calc(var(--width)*0.6);
+    display: flex;
+    -webkit-box-shadow: 0px 0px 28px -15px var(--secondary-color);
+    -moz-box-shadow: 0px 0px 28px -15px var(--secondary-color);
+    box-shadow: 0px 0px 28px -15px var(--secondary-color);
+}
+
+.section {
+    border-radius: inherit;
+}
+
+.left {
+    border-right: var(--secondary-color) solid 3px;
+}
+
+.left img {
+    height: 100%;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.right {
+    background-color: var(--primary-color);
+    width: 100%;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    padding: 3rem;
+}
+
+p,
+li {
+    line-height: 2;
+    max-width: 72ch;
+}
+
+li {
+    list-style-type: circle;
+    margin-left: 1.1rem;
+}
+
+form {
+    margin: 1rem 0 1rem;
+}
+
+fieldset {
+    border: none;
+    display: flex;
+}
+
+legend {
+    font-size: 1.5rem;
+    padding: 0 0 .5rem 0;
+    font-weight: bold;
+}
+
+.leftForm {
+    width: 50%;
+}
+
+.rightForm {
+    width: 50%;
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: .5rem;
+}
+
+input:not([type='checkbox']) {
+    width: 80%;
+    height: 1.8rem;
+    border: none;
+    border-radius: 0.1rem;
+}
+
+input:active,
+input:focus {
+    border: var(--secondary-color) solid 2px;
+    border-radius: 0.1rem;
+    outline: none;
+}
+
+
+/* input:invalid {
+    border: red solid 2px;
+} */
+
+label {
+    font-size: 0.7rem;
+    padding-bottom: 0.2rem;
+    letter-spacing: 0.2rem;
+}
+
+input[type='checkbox'] {
+    width: inherit;
+}
+
+.checkbox {
+    flex-direction: row;
+    align-items: center;
+    padding-top: .3rem;
+}
+
+input[type='checkbox']+label {
+    padding: 0 0 0 .3rem;
+}
+
+button {
+    background-color: var(--secondary-color);
+    border: none;
+    font-size: 1.3rem;
+    font-family: 'Kdam Thmor Pro', 'Roboto', sans-serif;
+    width: calc(var(--width)/6);
+    height: calc(var(--width)/25);
+    margin-top: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+.footer {
+    background-color: var(--primary-color);
+    padding: 1rem 0;
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    position: absolute;
+    bottom: 0;
+    border-top: var(--secondary-color) solid 3px;
+    -webkit-box-shadow: 0px 0px 28px -15px var(--secondary-color);
+    ;
+    -moz-box-shadow: 0px 0px 28px -15px var(--secondary-color);
+    box-shadow: 0px 0px 28px -15px var(--secondary-color);
+}
+
+
+/* 
+.footer a {
+    color: white;
+} */
