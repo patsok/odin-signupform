@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Roboto&display=swap');
+@font-face {
+    font-family: norse;
+    src: url(fonts/NorseBold-2Kge.otf);
+}
+
 *,
 *::before,
 *::after {
@@ -8,18 +13,27 @@
 }
 
 :root {
-    --primary-color: #0c2022;
+    /* --primary-color: #0c2022;
     --secondary-color: #69B7BF;
+    --background-color: #0D0D0D; */
+    --primary-color: rgb(7, 39, 45);
+    --secondary-color: rgb(64, 193, 172);
     --background-color: #0D0D0D;
     --width: 70rem;
     --border-radius: .5rem;
+    --norseFont: norse, 'Kdam Thmor Pro', 'Roboto', sans-serif;
 }
 
 body {
-    background-color: var(--background-color);
+    background-image: url(img/background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: white;
     font-family: 'Kdam Thmor Pro', 'Roboto', sans-serif;
-    font-size: .8rem;
+    /* font-size: .8rem; */
+    /* font-size: min(.8rem, 1vw); */
+    font-size: clamp(.6rem, 1vw, 0.8rem);
     letter-spacing: 0.1rem;
     display: flex;
     flex-direction: column;
@@ -29,16 +43,24 @@ body {
     position: relative;
 }
 
+h1,
+legend {
+    font-family: var(--norseFont);
+    font-size: clamp(1.7rem, 5vw, 2.4rem);
+    padding-bottom: 1rem;
+    letter-spacing: 0.3rem;
+}
+
 .cardContainer {
-    border: var(--secondary-color) solid 3px;
+    /* border: var(--secondary-color) solid 3px; */
     border-radius: var(--border-radius);
-    flex-shrink: 1;
-    width: var(--width);
-    height: calc(var(--width)*0.6);
+    width: clamp(20rem, 70vw, 70rem);
+    height: fit-content;
     display: flex;
-    -webkit-box-shadow: 0px 0px 28px -15px var(--secondary-color);
-    -moz-box-shadow: 0px 0px 28px -15px var(--secondary-color);
-    box-shadow: 0px 0px 28px -15px var(--secondary-color);
+    -webkit-box-shadow: 0px 0px 28px 5px var(--secondary-color);
+    -moz-box-shadow: 0px 0px 28px 5px var(--secondary-color);
+    box-shadow: 0px 0px 28px 5px var(--secondary-color);
+    margin: 5rem 0;
 }
 
 .section {
@@ -46,19 +68,38 @@ body {
 }
 
 .left {
-    border-right: var(--secondary-color) solid 3px;
+    /* border-right: var(--secondary-color) solid 3px; */
 }
 
 .left img {
-    height: 100%;
+    /* background-image: url(img/tree.png);
+    background-size: cover;
+    background-repeat: no-repeat; */
+    max-height: 680px;
+    width: fit-content;
     border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+@media only screen and (max-width: 1300px) {
+    .left img {
+        display: none;
+    }
+    .cardContainer {
+        background-image: url(img/tree.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
 
 .right {
     background-color: var(--primary-color);
     width: 100%;
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
-    padding: 3rem;
+    padding: clamp(1.5rem, 2vw, 3rem);
+    opacity: 0.95;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 p,
@@ -82,7 +123,6 @@ fieldset {
 }
 
 legend {
-    font-size: 1.5rem;
     padding: 0 0 .5rem 0;
     font-weight: bold;
 }
@@ -102,15 +142,18 @@ legend {
 }
 
 input:not([type='checkbox']) {
+    margin: 0;
+    padding: 0;
     width: 80%;
     height: 1.8rem;
     border: none;
     border-radius: 0.1rem;
+    background-color: var(--secondary-color);
 }
 
-input:active,
-input:focus {
-    border: var(--secondary-color) solid 2px;
+input:active:not([type='checkbox']),
+input:focus:not([type='checkbox']) {
+    border: var(--primary-color) solid 2px;
     border-radius: 0.1rem;
     outline: none;
 }
@@ -121,14 +164,17 @@ input:focus {
 } */
 
 label {
-    font-size: 0.7rem;
+    font-size: clamp(.4rem, 1vw, .7rem);
+    ;
     padding-bottom: 0.2rem;
     letter-spacing: 0.2rem;
 }
 
+
+/* 
 input[type='checkbox'] {
     width: inherit;
-}
+} */
 
 .checkbox {
     flex-direction: row;
@@ -136,15 +182,46 @@ input[type='checkbox'] {
     padding-top: .3rem;
 }
 
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+    width: 1.15rem;
+    height: 1.15rem;
+    background-color: var(--secondary-color);
+    border-radius: 0.1rem;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.8rem;
+    height: 0.8rem;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    background-color: var(--primary-color);
+    transform-origin: bottom right;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
 input[type='checkbox']+label {
-    padding: 0 0 0 .3rem;
+    padding: 0 0 .15rem .3rem;
+    text-transform: uppercase;
 }
 
 button {
     background-color: var(--secondary-color);
     border: none;
-    font-size: 1.3rem;
-    font-family: 'Kdam Thmor Pro', 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    font-family: var(--norseFont);
     width: calc(var(--width)/6);
     height: calc(var(--width)/25);
     margin-top: 1rem;
@@ -158,21 +235,16 @@ a {
 .footer {
     background-color: var(--primary-color);
     padding: 1rem 0;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    font-family: var(--norseFont);
     width: 100%;
     text-align: center;
     letter-spacing: 0.1rem;
     position: absolute;
     bottom: 0;
-    border-top: var(--secondary-color) solid 3px;
-    -webkit-box-shadow: 0px 0px 28px -15px var(--secondary-color);
-    ;
-    -moz-box-shadow: 0px 0px 28px -15px var(--secondary-color);
-    box-shadow: 0px 0px 28px -15px var(--secondary-color);
+    /* border-top: var(--secondary-color) solid 3px; */
+    -webkit-box-shadow: 0px 0px 28px 5px var(--secondary-color);
+    -moz-box-shadow: 0px 0px 28px 5px var(--secondary-color);
+    box-shadow: 0px 0px 28px 5px var(--secondary-color);
+    opacity: 0.9;
 }
-
-
-/* 
-.footer a {
-    color: white;
-} */
