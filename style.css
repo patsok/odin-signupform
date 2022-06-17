@@ -76,7 +76,6 @@ legend {
     background-size: cover;
     background-repeat: no-repeat; */
     max-height: 680px;
-    width: fit-content;
     border-radius: var(--border-radius) 0 0 var(--border-radius);
 }
 
@@ -88,6 +87,7 @@ legend {
         background-image: url(img/tree.png);
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: top;
     }
 }
 
