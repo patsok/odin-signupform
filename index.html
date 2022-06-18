@@ -23,7 +23,7 @@
                 <ul>
                     <li>How mighty <strong>Thor</strong> gained his famous <em>Mjolnir?</em></li>
                     <li>In what circumstances <strong>Loki</strong> gave birth to horse called <em>Sleipnir?</em></li>
-                    <li>Why word "Wendesday" comes directly from <strong>Odin?</strong></li>
+                    <li>Why word "Wednesday" comes directly from <strong>Odin?</strong></li>
                 </ul>
                 <p>Sign up to find out more!</p>
             </div>
@@ -31,43 +31,46 @@
                 <form action="http://httpbin.org/get" method="get">
                     <fieldset>
                         <legend>Let's do this!</legend>
-                        <div class="leftForm">
-                            <div class="formInput">
-                                <label for="firstname">FIRST NAME<span title="This field is required" aria-label="required">*</span></label>
-                                <input type="text" name="user-firstname" id="firstname" required>
-                            </div>
-                            <div class="formInput">
-                                <label for="email">EMAIL<span title="This field is required" aria-label="required">*</span></label>
-                                <input type="email" name="user-email" id="email" required>
-                            </div>
-                            <div class="formInput">
-                                <label for="password">PASSWORD<span title="This field is required" aria-label="required">*</span></label>
-                                <input type="password" name="user-password" id="password" required>
-                            </div>
+                        <div class="formInput">
+                            <label for="firstname">FIRST NAME<span title="This field is required" aria-label="required">*</span></label>
+                            <input type="text" name="user-firstname" id="firstname" required maxlength="32">
                         </div>
-                        <div class="rightForm">
-                            <div class="formInput">
-                                <label for="lastname">SECOND NAME<span title="This field is required" aria-label="required">*</span></label>
-                                <input type="text" name="user-lastname" id="lastname" required>
-                            </div>
-                            <div class="formInput">
-                                <label for="phone">PHONE NUMBER</label>
-                                <input type="tel" name="user-phone" id="phone">
-                            </div>
-                            <div class="formInput">
-                                <label for="confirmPassword">CONFIRM PASSWORD<span title="This field is required" aria-label="required">*</span></label>
-                                <input type="password" name="user-password-confirm" id="confirmPassword" required>
-                            </div>
+                        <div class="formInput">
+                            <label for="lastname">SECOND NAME<span title="This field is required" aria-label="required">*</span></label>
+                            <input type="text" name="user-lastname" id="lastname" required>
+                        </div>
+                        <div class="formInput">
+                            <label for="email">EMAIL<span title="This field is required" aria-label="required">*</span></label>
+                            <input type="email" name="user-email" id="email" required>
+                        </div>
+                        <div class="formInput">
+                            <label for="phone">PHONE NUMBER</label>
+                            <input type="tel" name="user-phone" id="phone">
+                        </div>
+                        <div class="formInput">
+                            <label for="password">PASSWORD<span title="This field is required" aria-label="required">*</span></label>
+                            <input type="password" name="user-password" id="password" minlength="1" class='password' required>
+                            <img src="img/visibility.svg" alt="test" class="eyeIcon eye_on">
+                            <img src="img/visibility_off.svg" alt="test" class="eyeIcon hidden eye_off">
+                        </div>
+                        <div class="formInput">
+                            <label for="confirmPassword">CONFIRM PASSWORD<span title="This field is required" aria-label="required">*</span></label>
+                            <input type="password" name="user-password-confirm" id="confirmPassword" class='password' required>
+                            <img src="img/visibility.svg" alt="test" class="eyeIcon eye_on">
+                            <img src="img/visibility_off.svg" alt="test" class="eyeIcon hidden eye_off">
                         </div>
                     </fieldset>
-                    <div class="passwordRestrictionMessage"></div>
                     <div class="formInput checkbox"><input type="checkbox" name="newsletter" id="newsletter"><label for="newsletter">Hit me up with a Norse Mythology newsletter!</label></div>
-                    <button type="submit">Create account</button>
-
+                    <div class="bottomSection">
+                        <button type="submit">Create account</button>
+                        <div class="helper">
+                            <p class="loginMess">Already have an account? <a href="https://github.com/patsok">Log in</a></p>
+                            <p class="rememberPassword">Forgot your password? <a href="https://github.com/patsok">Reset</a></p>
+                        </div>
+                    </div>
 
                 </form>
-                <div class="loginMess">Already have an account? <a href="https://github.com/patsok">Log in</a></div>
-                <div class="rememberPassword">Forgot your password? <a href="https://github.com/patsok">Reset</a></div>
+
             </div>
         </div>
     </div>
