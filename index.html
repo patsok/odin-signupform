@@ -33,7 +33,7 @@
                         <legend>Let's do this!</legend>
                         <div class="formInput">
                             <label for="firstname">FIRST NAME<span title="This field is required" aria-label="required">*</span></label>
-                            <input type="text" name="user-firstname" id="firstname" required maxlength="32">
+                            <input type="text" name="user-firstname" id="firstname" required>
                         </div>
                         <div class="formInput">
                             <label for="lastname">SECOND NAME<span title="This field is required" aria-label="required">*</span></label>
@@ -45,11 +45,11 @@
                         </div>
                         <div class="formInput">
                             <label for="phone">PHONE NUMBER</label>
-                            <input type="tel" name="user-phone" id="phone">
+                            <input type="tel" name="user-phone" id="phone" minlength="7">
                         </div>
                         <div class="formInput">
-                            <label for="password">PASSWORD<span title="This field is required" aria-label="required">*</span></label>
-                            <input type="password" name="user-password" id="password" minlength="1" class='password' required>
+                            <label for="password">PASSWORD<span title="This field is required" aria-label="required">*</span><span id="popup">(?)<span class="popuptext">Your password must have minimum 8 characters, at least one letter and one number</span></span></label>
+                            <input type="password" name="user-password" id="password" minlength="1" class='password' required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
                             <img src="img/visibility.svg" alt="test" class="eyeIcon eye_on">
                             <img src="img/visibility_off.svg" alt="test" class="eyeIcon hidden eye_off">
                         </div>

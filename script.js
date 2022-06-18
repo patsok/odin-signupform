@@ -5,32 +5,104 @@ let msgError = document.querySelector('.passwordRestrictionMessage');
 let submit = document.querySelector('button');
 let form = document.querySelector('form');
 let inputs = document.querySelectorAll('input');
+let inputsNoPasswords = document.querySelectorAll('input:not([type="password"])');
+let popup = document.querySelector('#popup');
+let eyes = document.querySelectorAll('.eyeIcon');
+let popupText = document.querySelector('.popuptext');
 
-function buildElement(element) {
-    let elementNode = document.createElement(element);
-    elementNode.classList.add("errorMsg");
-    elementNode.setAttribute('style', 'position: absolute; top:55px')
-    return elementNode;
-}
 
 window.addEventListener('load', () => {
+    setEyesIcons();
+    setRequirements();
     let elementNode = buildElement('div');
     password.parentNode.insertBefore(elementNode, password);
 })
 
+window.addEventListener('resize', () => {
+    setEyesIcons();
+    setRequirements();
+});
+
+function setEyesIcons() {
+    let pos = password.clientWidth - 24;
+    eyes.forEach(eye => {
+        eye.setAttribute('style', `left:${pos}px;`)
+    })
+}
+
+function setRequirements() {
+    let pos = password.clientWidth - 120;
+    pos < 20 ? pos = 8 : pos;
+    popup.setAttribute('style', `left:${pos}px;`)
+}
+
+eyes.forEach(eye => {
+    eye.addEventListener('click', () => {
+        passwords.forEach(password => {
+            if (password.getAttribute('type') == 'password') {
+                password.setAttribute('type', 'text');
+                eyes.forEach(eyeVisibility => {
+                    eyeVisibility.classList.contains('eye_on') ? eyeVisibility.classList.add('hidden') : eyeVisibility.classList.remove('hidden');
+                })
+            } else {
+                password.setAttribute('type', 'password')
+                eyes.forEach(eyeVisibility => {
+                    eyeVisibility.classList.contains('eye_on') ? eyeVisibility.classList.remove('hidden') : eyeVisibility.classList.add('hidden');
+                })
+            }
+        });
+    })
+});
+
+function buildElement(element) {
+    let elementNode = document.createElement(element);
+    elementNode.classList.add("errorMsg");
+    elementNode.setAttribute('style', 'position: absolute; bottom:3px')
+    return elementNode;
+}
+
+// function validatePasswords(div) {
+//     if (password.value && confirmPassword.value) {
+//         if (password.value != confirmPassword.value) {
+//             div.textContent = "Passwords do not match!";
+//             confirmPassword.setCustomValidity('Passwords do not match!');
+//             password.classList.add('invalid');
+//             confirmPassword.classList.add('invalid');
+//         } else {
+//             div.textContent = "";
+//             confirmPassword.setCustomValidity('');
+//             password.classList.remove('invalid');
+//             confirmPassword.classList.remove('invalid');
+//         }
+//     }
+// }
+
 function validatePasswords(div) {
-    if (password.value && confirmPassword.value) {
-        if (password.value != confirmPassword.value) {
-            div.textContent = "Passwords do not match!";
-            confirmPassword.setCustomValidity('Passwords do not match!');
-        } else {
-            div.textContent = "";
-            confirmPassword.setCustomValidity('');
-            password.classList.remove('invalid');
-            confirmPassword.classList.remove('invalid');
+    if (!password.validity.valid) {
+        div.textContent = "Password not valid";
+        confirmPassword.setCustomValidity("Password not valid");
+        password.classList.add('invalid');
+    } else {
+        div.textContent = "";
+        confirmPassword.setCustomValidity('');
+        password.classList.remove('invalid');
+        confirmPassword.classList.remove('invalid');
+        if (password.value && confirmPassword.value) {
+            if (password.value != confirmPassword.value) {
+                div.textContent = "Passwords do not match!";
+                confirmPassword.setCustomValidity('Passwords do not match!');
+                password.classList.add('invalid');
+                confirmPassword.classList.add('invalid');
+            } else {
+                div.textContent = "";
+                confirmPassword.setCustomValidity('');
+                password.classList.remove('invalid');
+                confirmPassword.classList.remove('invalid');
+            }
         }
     }
 }
+
 
 passwords.forEach(pass => {
     pass.addEventListener('blur', () => {
@@ -54,72 +126,36 @@ submit.addEventListener('click', () => {
     inputs.forEach(input => {
         if (!input.value && input.validity.valid == false) {
             input.classList.add('invalid');
+        } else {
+            input.classList.remove('invalid');
         }
     })
 })
 
-inputs.forEach(input => {
-    if (!input.classList.contains('password')) {
-        let div = document.createElement('div');
-        div.classList.add("errorMsg");
-        input.addEventListener('blur', () => {
-            if (input.value && input.validity.valid == false) {
-                input.classList.add('invalid');
+inputsNoPasswords.forEach(input => {
+    let elementNode = buildElement('div');
+    input.addEventListener('blur', () => {
+        if (input.value && input.validity.valid == false) {
+            input.classList.add('invalid');
+            let id = input.getAttribute('id')
+            let name = id.charAt(0).toUpperCase() + id.slice(1);
+            elementNode.textContent = `${name} is invalid!`;
+            input.parentNode.insertBefore(elementNode, input);
 
-                let id = input.getAttribute('id')
-                let name = id.charAt(0).toUpperCase() + id.slice(1);
-                div.textContent = `${name} is invalid!`
-                div.setAttribute('style', 'position: absolute; top:55px')
-                input.parentNode.insertBefore(div, input);
-
-            } else if (input.value && input.validity.valid == true) {
-                input.classList.remove('invalid');
-            }
-        })
-    }
-
-});
-
-let eyes = document.querySelectorAll('.eyeIcon');
-let eyesIcon = document.querySelectorAll('.eye_on');
-let eyesIconOff = document.querySelectorAll('.eye_off');
-let p = document.querySelector('h1+p');
-
-eyes.forEach(eye => {
-    eye.addEventListener('click', () => {
-        passwords.forEach(password => {
-            if (password.getAttribute('type') == 'password') {
-                password.setAttribute('type', 'text');
-                eyesIcon.forEach(eyeIcon => {
-                    eyeIcon.classList.add('hidden');
-                });
-                eyesIconOff.forEach(eyeIconOff => {
-                    eyeIconOff.classList.remove('hidden');
-                })
-            } else {
-                password.setAttribute('type', 'password')
-                eyesIcon.forEach(eyeIcon => {
-                    eyeIcon.classList.remove('hidden');
-                });
-                eyesIconOff.forEach(eyeIconOff => {
-                    eyeIconOff.classList.add('hidden');
-                })
-            }
-        });
+        } else if (input.value && input.validity.valid == true) {
+            elementNode.textContent = ``;
+            input.classList.remove('invalid');
+        }
     })
 });
 
-window.addEventListener('resize', () => {
-    setEyesIcons();
-});
-
-window.addEventListener('load', () => {
-    setEyesIcons();
+popup.addEventListener('click', () => {
+    popupText.classList.toggle("show");
 })
 
-function setEyesIcons() {
-    let pos = password.clientWidth - 24;
-    eyes.forEach(eye => {
-        eye.setAttribute('style', `left:${pos}px;`)
-    })
-}
+popup.addEventListener('mouseout', () => {
+    setTimeout(() => {
+        popupText.offsetHeight;
+        popupText.classList.remove("show");
+    }, 2000);;
+})
