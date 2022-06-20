@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up for Norse mythology</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="head"></div>
+    <div class="cardContainer">
+
+        <div class="section left">
+            <img src="img/tree.png" alt="norse genealogy">
+        </div>
+        <div class="section right login">
+            <div class="headerContainer">
+                <h1>Hello my Midgard friend!</h1>
+                <p>We are waiting for you to join our fight for Valhalla!</p>
+            </div>
+            <div class="formContainerLogin">
+                <form action="index.html" method="get">
+                    <fieldset>
+                        <legend>Tell us your<br> credentials Norseman</legend>
+                        <div class="formInputLogin">
+                            <label for="firstname">NICKNAME<span title="This field is required" aria-label="required">*</span></label>
+                            <input type="text" name="user-nickname" id="nickname" required disabled value="Falco" readonly>
+                        </div>
+                        <div class="formInputLogin">
+                            <label for="password">PASSWORD<span title="This field is required" aria-label="required">*</span></label>
+                            <input type="password" name="user-password" id="password" minlength="1" class='password' required disabled value="Bruh, you're a hacker!" readonly="readonly">
+                        </div>
+                        <div class="formInputLogin"><button type="submit" disabled>Log in</button>
+                        </div>
+                        <p class="rememberPassword">Forgot your password? <a href="index.html">Reset</a></p>
+            </div>
+            </fieldset>
+
+
+            </form>
+
+        </div>
+    </div>
+    </div>
+    <div class="footer">
+        <div class="author">Made with <img src="./img/heart.png" width="15rem"> by <a href="https://github.com/patsok" target="_blank">Falco</a></div>
+    </div>
+</body>
+
+</html>

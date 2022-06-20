@@ -10,17 +10,26 @@ let popup = document.querySelector('#popup');
 let eyes = document.querySelectorAll('.eyeIcon');
 let popupText = document.querySelector('.popuptext');
 
-
 window.addEventListener('load', () => {
-    setEyesIcons();
-    setRequirements();
-    let elementNode = buildElement('div');
-    password.parentNode.insertBefore(elementNode, password);
+    if (eyes.length != 0) {
+        setEyesIcons();
+    }
+    if (popup) {
+        setRequirements();
+    }
+    if (password) {
+        let elementNode = buildElement('div');
+        password.parentNode.insertBefore(elementNode, password);
+    }
 })
 
 window.addEventListener('resize', () => {
-    setEyesIcons();
-    setRequirements();
+    if (eyes.length != 0) {
+        setEyesIcons();
+    }
+    if (popup) {
+        setRequirements();
+    }
 });
 
 function setEyesIcons() {
@@ -31,8 +40,7 @@ function setEyesIcons() {
 }
 
 function setRequirements() {
-    let pos = password.clientWidth - 120;
-    pos < 20 ? pos = 8 : pos;
+    let pos = password.clientWidth - 32;
     popup.setAttribute('style', `left:${pos}px;`)
 }
 
@@ -61,24 +69,8 @@ function buildElement(element) {
     return elementNode;
 }
 
-// function validatePasswords(div) {
-//     if (password.value && confirmPassword.value) {
-//         if (password.value != confirmPassword.value) {
-//             div.textContent = "Passwords do not match!";
-//             confirmPassword.setCustomValidity('Passwords do not match!');
-//             password.classList.add('invalid');
-//             confirmPassword.classList.add('invalid');
-//         } else {
-//             div.textContent = "";
-//             confirmPassword.setCustomValidity('');
-//             password.classList.remove('invalid');
-//             confirmPassword.classList.remove('invalid');
-//         }
-//     }
-// }
-
 function validatePasswords(div) {
-    if (!password.validity.valid) {
+    if (!password.validity.valid && password.value) {
         div.textContent = "Password not valid";
         confirmPassword.setCustomValidity("Password not valid");
         password.classList.add('invalid');
@@ -103,7 +95,6 @@ function validatePasswords(div) {
     }
 }
 
-
 passwords.forEach(pass => {
     pass.addEventListener('blur', () => {
         let div = document.querySelector('[for="password"]+div')
@@ -116,11 +107,14 @@ passwords.forEach(pass => {
 
 });
 
-form.addEventListener('submit', (event) => {
-    if (password.value != confirmPassword.value) {
-        event.preventDefault();
-    }
-})
+if (form) {
+    form.addEventListener('submit', (event) => {
+        if (password.value != confirmPassword.value) {
+            event.preventDefault();
+        }
+    })
+}
+
 
 submit.addEventListener('click', () => {
     inputs.forEach(input => {
@@ -132,30 +126,75 @@ submit.addEventListener('click', () => {
     })
 })
 
+function validateInput(elementNode, input) {
+    if (input.value && input.validity.valid == false) {
+        input.classList.add('invalid');
+        let id = input.getAttribute('id')
+        let name = id.charAt(0).toUpperCase() + id.slice(1);
+        elementNode.textContent = `${name} is invalid!`;
+        input.parentNode.insertBefore(elementNode, input);
+
+    } else if (input.value && input.validity.valid == true) {
+        elementNode.textContent = ``;
+        input.classList.remove('invalid');
+    }
+}
+
 inputsNoPasswords.forEach(input => {
     let elementNode = buildElement('div');
     input.addEventListener('blur', () => {
-        if (input.value && input.validity.valid == false) {
-            input.classList.add('invalid');
-            let id = input.getAttribute('id')
-            let name = id.charAt(0).toUpperCase() + id.slice(1);
-            elementNode.textContent = `${name} is invalid!`;
-            input.parentNode.insertBefore(elementNode, input);
-
-        } else if (input.value && input.validity.valid == true) {
-            elementNode.textContent = ``;
-            input.classList.remove('invalid');
-        }
+        validateInput(elementNode, input);
+        input.addEventListener('input', () => {
+            validateInput(elementNode, input);
+        })
     })
 });
 
-popup.addEventListener('click', () => {
-    popupText.classList.toggle("show");
-})
+if (popup) {
 
-popup.addEventListener('mouseout', () => {
-    setTimeout(() => {
-        popupText.offsetHeight;
-        popupText.classList.remove("show");
-    }, 2000);;
-})
+    popup.addEventListener('click', () => {
+        popupText.classList.toggle("show");
+    })
+
+    popup.addEventListener('mouseout', () => {
+        setTimeout(() => {
+            popupText.classList.remove("show");
+        }, 5000);;
+    })
+
+    popup.addEventListener('blur', () => {
+        setTimeout(() => {
+            popupText.classList.remove("show");
+        }, 5000);;
+    })
+}
+
+
+
+
+const buttons = document.querySelectorAll(".worlds");
+for (const button of buttons) {
+    button.addEventListener("click", createRipple);
+}
+submit.addEventListener("click", createRipple);
+
+
+function createRipple(event) {
+    const button = event.currentTarget;
+    const circle = document.createElement("span");
+    const diameter = Math.max(button.clientWidth, button.clientHeight);
+    const radius = diameter / 2;
+
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+    circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+    circle.classList.add("ripple");
+
+    const ripple = button.getElementsByClassName("ripple")[0];
+
+    if (ripple) {
+        ripple.remove();
+    }
+
+    button.appendChild(circle);
+}

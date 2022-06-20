@@ -11,14 +11,15 @@
 </head>
 
 <body>
+    <div class="head"></div>
     <div class="cardContainer">
+
         <div class="section left">
             <img src="img/tree.png" alt="norse genealogy">
-            <div class="logo"></div>
         </div>
         <div class="section right">
             <div class="headerContainer">
-                <h1>Welcome to Asgard!</h1>
+                <h1>Are you worth joining gods?</h1>
                 <p>Want to know more about <strong>Norse Mythology</strong>? You will find here: </p>
                 <ul>
                     <li>How mighty <strong>Thor</strong> gained his famous <em>Mjolnir?</em></li>
@@ -28,7 +29,7 @@
                 <p>Sign up to find out more!</p>
             </div>
             <div class="formContainer">
-                <form action="http://httpbin.org/get" method="get">
+                <form action="created.html" method="get">
                     <fieldset>
                         <legend>Let's do this!</legend>
                         <div class="formInput">
@@ -48,8 +49,10 @@
                             <input type="tel" name="user-phone" id="phone" minlength="7">
                         </div>
                         <div class="formInput">
-                            <label for="password">PASSWORD<span title="This field is required" aria-label="required">*</span><span id="popup">(?)<span class="popuptext">Your password must have minimum 8 characters, at least one letter and one number</span></span></label>
-                            <input type="password" name="user-password" id="password" minlength="1" class='password' required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+                            <label for="password">PASSWORD<span title="This field is required" aria-label="required">*</span>
+                                <span id="popup">(?)<span class="popuptext">Your password must have minimum 8 characters, at least one letter and one number</span></span>
+                            </label>
+                            <input type="password" name="user-password" id="password" class='password' required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
                             <img src="img/visibility.svg" alt="test" class="eyeIcon eye_on">
                             <img src="img/visibility_off.svg" alt="test" class="eyeIcon hidden eye_off">
                         </div>
@@ -64,8 +67,8 @@
                     <div class="bottomSection">
                         <button type="submit">Create account</button>
                         <div class="helper">
-                            <p class="loginMess">Already have an account? <a href="https://github.com/patsok">Log in</a></p>
-                            <p class="rememberPassword">Forgot your password? <a href="https://github.com/patsok">Reset</a></p>
+                            <p class="loginMess">Already have an account? <a href="login.html">Log in</a></p>
+                            </p>
                         </div>
                     </div>
 
